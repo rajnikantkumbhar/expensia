@@ -10,10 +10,13 @@ import {
 } from "@mantine/core";
 import { User, Lock, Sun, Moon } from "tabler-icons-react";
 import { useForm } from "@mantine/form";
-
+import { useDispatch } from "react-redux";
 import Logo from "../images/logo-dark.svg";
+import { toggleTheme } from "../redux/ThemeReducer";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
   const form = useForm({
     initialValues: {
       userid: "",
@@ -25,6 +28,10 @@ const LoginPage = () => {
       password: (value) => (value.length < 1 ? "Should not be blank" : null),
     },
   });
+
+  const toggleThemeHandler = () => {
+    dispatch(toggleTheme);
+  };
   return (
     <Container
       fluid
@@ -83,7 +90,7 @@ const LoginPage = () => {
           </Flex>
         </form>
       </Card>
-      <ActionIcon mt={16} variant="light">
+      <ActionIcon mt={16} variant="light" onClick={toggleThemeHandler}>
         <Sun size={16} />
       </ActionIcon>
     </Container>
