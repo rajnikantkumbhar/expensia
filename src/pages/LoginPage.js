@@ -10,11 +10,13 @@ import {
 } from "@mantine/core";
 import { User, Lock, Sun, Moon } from "tabler-icons-react";
 import { useForm } from "@mantine/form";
-import { useDispatch } from "react-redux";
-import Logo from "../images/logo-dark.svg";
+import { useDispatch, useSelector } from "react-redux";
+import LogoDark from "../images/logo-dark.svg";
+import LogoLight from "../images/logo-light.svg";
 import { toggleTheme } from "../redux/ThemeReducer";
 
 const LoginPage = () => {
+  const statex = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const form = useForm({
@@ -30,7 +32,7 @@ const LoginPage = () => {
   });
 
   const toggleThemeHandler = () => {
-    dispatch(toggleTheme);
+    dispatch(toggleTheme());
   };
   return (
     <Container
@@ -59,7 +61,12 @@ const LoginPage = () => {
             direction="column"
             wrap="wrap"
           >
-            <Image mt="xs" src={Logo} width="140px" alt="Logo" />
+            <Image
+              mt="xs"
+              src={statex.theme === "dark" ? LogoDark : LogoLight}
+              width="140px"
+              alt="Logo"
+            />
 
             <Text fz="xs" c="dimmed" mb="xs" ta="center">
               Enter your creditials to start with Expensia.
@@ -91,7 +98,7 @@ const LoginPage = () => {
         </form>
       </Card>
       <ActionIcon mt={16} variant="light" onClick={toggleThemeHandler}>
-        <Sun size={16} />
+        {statex.theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
       </ActionIcon>
     </Container>
   );
