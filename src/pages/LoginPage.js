@@ -13,7 +13,7 @@ import { useForm } from "@mantine/form";
 import { useDispatch, useSelector } from "react-redux";
 import LogoDark from "../images/logo-dark.svg";
 import LogoLight from "../images/logo-light.svg";
-import { toggleTheme } from "../redux/ThemeReducer";
+import { toggleTheme, toggleLoggedIn } from "../redux/RootReducer";
 
 const LoginPage = () => {
   const statex = useSelector((state) => state);
@@ -31,9 +31,6 @@ const LoginPage = () => {
     },
   });
 
-  const toggleThemeHandler = () => {
-    dispatch(toggleTheme());
-  };
   return (
     <Container
       fluid
@@ -46,9 +43,9 @@ const LoginPage = () => {
       }}
     >
       <Card
-        shadow="sm"
+        shadow="md"
         p="lg"
-        radius="md"
+        radius="sm"
         withBorder
         style={{ width: "20rem" }}
       >
@@ -73,6 +70,7 @@ const LoginPage = () => {
             </Text>
 
             <TextInput
+              autoComplete="off"
               withAsterisk
               label="User ID"
               placeholder="enter user id"
@@ -82,6 +80,7 @@ const LoginPage = () => {
             />
 
             <TextInput
+              autoComplete="off"
               type="password"
               withAsterisk
               label="Password"
@@ -91,13 +90,24 @@ const LoginPage = () => {
               style={{ width: "100%" }}
             />
 
-            <Button type="submit" my="sm" fullWidth>
+            <Button
+              variant="gradient"
+              gradient={{ from: "indigo", to: "cyan" }}
+              type="submit"
+              my="sm"
+              fullWidth
+              onClick={() => dispatch(toggleLoggedIn())}
+            >
               Login
             </Button>
           </Flex>
         </form>
       </Card>
-      <ActionIcon mt={16} variant="light" onClick={toggleThemeHandler}>
+      <ActionIcon
+        mt={16}
+        variant="light"
+        onClick={() => dispatch(toggleTheme())}
+      >
         {statex.theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
       </ActionIcon>
     </Container>

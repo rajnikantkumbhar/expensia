@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const themeSlice = createSlice({
+const rootSlice = createSlice({
   name: "theme",
-  initialState: { theme: "dark" },
+  initialState: { theme: "dark", loggedIn: false },
   reducers: {
     toggleTheme: (state, action) => {
       console.log("dispatched");
@@ -12,7 +12,10 @@ const themeSlice = createSlice({
         state.theme = "dark";
       }
     },
+    toggleLoggedIn: (state, action) => {
+      state.loggedIn = !state.loggedIn;
+    },
   },
 });
-export const { toggleTheme } = themeSlice.actions;
-export default themeSlice.reducer;
+export const { toggleTheme, toggleLoggedIn } = rootSlice.actions;
+export default rootSlice.reducer;
