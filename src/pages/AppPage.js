@@ -1,22 +1,11 @@
-import {
-  AppShell,
-  Header,
-  Image,
-  ActionIcon,
-  Flex,
-  Card,
-  Text,
-  TextInput,
-  NumberInput,
-  Button,
-  Grid,
-} from "@mantine/core";
+import { AppShell, Header, Image, ActionIcon, Flex, Grid } from "@mantine/core";
 import LogoDark from "../images/logo-dark.svg";
 import LogoLight from "../images/logo-light.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme, toggleLoggedIn } from "../redux/RootReducer";
-import { Sun, Moon, Logout, Plus } from "tabler-icons-react";
-
+import { Sun, Moon, Logout } from "tabler-icons-react";
+import Section1 from "../components/Section1";
+import Section2 from "../components/Section2";
 const AppPage = () => {
   const statex = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -61,112 +50,12 @@ const AppPage = () => {
         },
       })}
     >
-      <Grid gutter={5} gutterXs="md" gutterMd="xl">
-        <Grid.Col span={6}>
-          <Flex align="center" justify="center" gap="md">
-            <Card
-              shadow="md"
-              p="xl"
-              radius="sm"
-              withBorder
-              style={{ width: "24rem" }}
-            >
-              <Flex
-                mih={50}
-                gap="lg"
-                justify="flex-start"
-                align="flex-start"
-                direction="column"
-                wrap="wrap"
-              >
-                <Text fw={800} size="xl">
-                  Add Expense
-                </Text>
-                <NumberInput
-                  autoComplete="off"
-                  withAsterisk
-                  label="Amount"
-                  placeholder="enter amount"
-                  style={{ width: "100%" }}
-                />
-                <TextInput
-                  autoComplete="off"
-                  withAsterisk
-                  label="Description"
-                  placeholder="enter description"
-                  style={{ width: "100%" }}
-                />
-                <Flex align="center" justify="space-between" w="100%" mt="md">
-                  <Button
-                    variant="gradient"
-                    gradient={{ from: "indigo", to: "cyan" }}
-                    leftIcon={<Plus size={14} />}
-                  >
-                    Add Expense
-                  </Button>
-                  <Button
-                    variant="subtle"
-                    gradient={{ from: "indigo", to: "cyan" }}
-                  >
-                    Clear
-                  </Button>
-                </Flex>
-              </Flex>
-            </Card>
-          </Flex>
+      <Grid gutter={5}>
+        <Grid.Col lg={6} md={6}>
+          <Section1 />
         </Grid.Col>
-        <Grid.Col span={6}>
-          <Flex align="center" justify="center" gap="md">
-            <Card
-              shadow="md"
-              p="xl"
-              radius="sm"
-              withBorder
-              style={{ width: "24rem" }}
-            >
-              <Flex
-                mih={50}
-                gap="lg"
-                justify="flex-start"
-                align="flex-start"
-                direction="column"
-                wrap="wrap"
-              >
-                <Text fw={800} size="xl">
-                  Add Expense
-                </Text>
-                <NumberInput
-                  autoComplete="off"
-                  withAsterisk
-                  label="Amount"
-                  placeholder="enter amount"
-                  style={{ width: "100%" }}
-                />
-                <TextInput
-                  autoComplete="off"
-                  withAsterisk
-                  label="Description"
-                  placeholder="enter description"
-                  style={{ width: "100%" }}
-                />
-                <Flex align="center" justify="space-between" w="100%" mt="md">
-                  <Button
-                    variant="gradient"
-                    gradient={{ from: "indigo", to: "cyan" }}
-                    leftIcon={<Plus size={14} />}
-                  >
-                    Add Expense
-                  </Button>
-                  <Button
-                    variant="subtle"
-                    gradient={{ from: "indigo", to: "cyan" }}
-                  >
-                    Clear
-                  </Button>
-                </Flex>
-              </Flex>
-            </Card>
-          </Flex>
+        <Grid.Col lg={6} md={6}>
+          <Section2 />
         </Grid.Col>
       </Grid>
     </AppShell>
